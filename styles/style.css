@@ -1,0 +1,188 @@
+* {
+    box-sizing: border-box;
+}
+
+/*Si uso el selector universal se aplica en los contenedores de texto y parrafo, mejor especificar que sea body */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #E3EAE8;
+}
+
+nav {
+    background-color: #1E4BA3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    margin: 20px;
+    border-radius: 30px;
+    color: #E3EAE8;
+}
+
+nav h1, nav h2 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+nav h1 {
+    font-size: 24px;
+}
+
+nav h2 {
+    font-size: 16px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #1E4BA3;
+    background-color: #0D1F45;
+    padding: 10px 20px;
+    font-weight: 700;
+    border-radius: 30px;
+    transition: all 0.3s;
+}
+
+.material-symbols-outlined {
+    font-size: 20px;
+    color: inherit;
+}
+
+nav ul li a:hover::before {
+    background-color: #283E14; /* Cambia a blanco o al color que prefieras */
+}
+
+nav ul li a:hover {
+    background-color: #669D31;
+    color: #283E14;
+}
+
+.contenedor-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contenedor-escudo {
+    width: 60px;
+    height: 60px;
+    background-color: #232323;
+}
+
+.contenedor-main {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.columna_izquierda {
+    width: 35%;
+}
+
+#Mision {
+    background-color: #395B39;
+    border-radius: 30px;
+    padding: 20px;
+    color: #E3EAE8;
+    margin-bottom: 20px;
+}
+
+#Mision h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    padding-top: 0px;
+}
+
+#Mision p {
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 300;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#Vision {
+    background-color: #395B39;
+    border-radius: 30px;
+    padding: 20px;
+    color:#E3EAE8;
+}
+
+#Vision h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+#Vision p {
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 300;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.columna_centro {
+    width: 45%;
+    background-color: #A52020;
+    border-radius: 30px;
+    padding: 20px;
+    color: #E3EAE8;
+}
+
+.columna_centro h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    padding-top: 0px;
+}
+
+.columna_centro p {
+    text-align: justify;
+    font-size: 20px;
+    font-weight: 300;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.negritas {
+    font-weight: 700;
+}
+
+#escuela_frente {
+    padding-inline: 30px;
+    width: 100%;
+    height: auto;
+}
+
+.columna_derecha {
+    width: 20%;
+    background-color: #232323;
+    padding: 20px;
+    border-radius: 30px;
+    color: #E3EAE8;
+}
+
+.columna_derecha h3 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.columna_derecha h4 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
