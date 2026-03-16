@@ -58,6 +58,7 @@ nav ul li a {
     color: inherit;
 }
 
+/*Pseudoelemento*/
 nav ul li a:hover::before {
     background-color: #283E14; /* Cambia a blanco o al color que prefieras */
 }
