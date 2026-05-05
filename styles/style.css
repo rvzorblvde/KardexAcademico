@@ -1,189 +1,200 @@
+/*
+========================== Variables y General ==========================
+*/
+
+:root {
+    /*Colores*/
+    --bg-principal: #114B5F;
+    --azul1: #6DB1BF;
+    --tarjeta1: #C2E7DA;
+    --tarjeta2: #839788;
+    --color-negro: #231F20;
+    --color-blanco: #F7F4F3;
+
+    /*Boton Normal*/
+    --btn-normalf: #F6AE2D;
+    --btn-normala: #895B06;
+
+    /*Boton Activo*/
+    --btn-activof: #769127;
+    --btn-activoa: #425115;
+}
+
 * {
-    box-sizing: border-box;
-}
-
-/*Si uso el selector universal se aplica en los contenedores de texto y parrafo, mejor especificar que sea body */
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #E3EAE8;
-}
-
-nav {
-    background-color: #1E4BA3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    margin: 20px;
-    border-radius: 30px;
-    color: #E3EAE8;
-}
-
-nav h1, nav h2 {
-    margin: 0;
-    line-height: 1.2;
-}
-
-nav h1 {
-    font-size: 24px;
-}
-
-nav h2 {
-    font-size: 16px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
     margin: 0;
     padding: 0;
 }
 
-nav ul li a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: #1E4BA3;
-    background-color: #0D1F45;
-    padding: 10px 20px;
-    font-weight: 700;
-    border-radius: 30px;
-    transition: all 0.3s;
-}
-
-.material-symbols-outlined {
-    font-size: 20px;
-    color: inherit;
-}
-
-/*Pseudoelemento*/
-nav ul li a:hover::before {
-    background-color: #283E14; /* Cambia a blanco o al color que prefieras */
-}
-
-nav ul li a:hover {
-    background-color: #669D31;
-    color: #283E14;
-}
-
-.contenedor-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.contenedor-escudo {
-    width: 60px;
-    height: 60px;
-    background-color: #232323;
-}
-
-.contenedor-main {
-    display: flex;
-    gap: 30px;
+/*
+============= General =============
+*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-principal);
     padding: 20px;
+}
+
+/*
+============= Logo y Texto =============
+*/
+
+.logo-contenedor {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/*Placeholder de escudo*/
+.escudo-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-negro);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/*Textos*/
+.logo-contenedor h1 {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
+    line-height: 0.9;
+    color: var(--color-blanco);
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
-.columna_izquierda {
-    width: 35%;
+.logo-contenedor h1 .txt-kardex {
+    font-size: 48px;
+    letter-spacing: 0.5px;
+
 }
 
-#Mision {
-    background-color: #395B39;
-    border-radius: 30px;
-    padding: 20px;
-    color: #E3EAE8;
-    margin-bottom: 20px;
+.logo-contenedor h1 .txt-academico {
+    font-size: 32px;
+    letter-spacing: 1px;
+
 }
 
-#Mision h2 {
+/*
+============= Nav =============
+*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 50px;
+    margin: 20px;
+    background-color: var(--azul1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+/* Estado normal*/
+.btn-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: 400;
+    background-color: var(--btn-normalf);
+    color: var(--btn-normala);
+    transition: background-color 0.2s ease;
+}
+
+/*Estado Hover*/
+.btn-nav:hover {
+    background-color: var(--btn-activof);
+    color: var(--btn-activoa);
+}
+
+/*
+======================================= Main =======================================
+*/
+
+.inicio-contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 20px;
+    padding: 10px;
+}
+
+/*Quienes Somos*/
+.acerca-seccion {
+    background-color: var(--tarjeta1);
+    padding: 40px;
+    display: flex;
+    border-radius: 15px;
+    flex-direction: column;
+}
+
+/*
+========================== Texto General ==========================
+*/
+.acerca-seccion h2,
+.objetivo-box h2 {
+    color: var(--color-negro);
+    font-size: 40px;
+    font-weight: 700;
     text-align: center;
-    font-size: 36px;
-    font-weight: 700;
-    padding-top: 0px;
+    margin: 0;
 }
 
-#Mision p {
+.acerca-seccion p, 
+.objetivo-box p {
+    color: var(--color-negro);
+    font-size: 24px;
+    line-height: 1.6;
     text-align: justify;
-    font-size: 20px;
-    font-weight: 300;
-    padding-left: 30px;
-    padding-right: 30px;
+    margin: 0;
 }
 
-#Vision {
-    background-color: #395B39;
-    border-radius: 30px;
-    padding: 20px;
-    color:#E3EAE8;
-}
-
-#Vision h2 {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 700;
-}
-
-#Vision p {
-    text-align: justify;
-    font-size: 20px;
-    font-weight: 300;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.columna_centro {
-    width: 45%;
-    background-color: #A52020;
-    border-radius: 30px;
-    padding: 20px;
-    color: #E3EAE8;
-}
-
-.columna_centro h2 {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 700;
-    padding-top: 0px;
-}
-
-.columna_centro p {
-    text-align: justify;
-    font-size: 20px;
-    font-weight: 300;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.negritas {
-    font-weight: 700;
-}
-
-#escuela_frente {
-    padding-inline: 30px;
+/*
+========================== Imagen ==========================
+*/
+.imagen-contenedor {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.acerca-seccion img {
+    width: 90%;
+    max-width: 500px;
     height: auto;
+    object-fit: cover;
 }
 
-.columna_derecha {
-    width: 20%;
-    background-color: #232323;
-    padding: 20px;
-    border-radius: 30px;
-    color: #E3EAE8;
+/*
+========================== Misión y Visión ==========================
+*/
+
+.objetivos-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.columna_derecha h3 {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.columna_derecha h4 {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
+.objetivo-box {
+    background-color: var(--tarjeta2);
+    padding: 40px;
+    border-radius: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
