@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    <title>Horarios - Kárdex Académico</title>
 
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
@@ -27,13 +28,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="horarios.html" class="btn-nav">
+                    <a href="#" class="btn-nav">
                         <iconify-icon icon="heroicons:academic-cap-solid" class="nav-icon"></iconify-icon>
                         <span>Horarios</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="btn-nav">
+                    <a href="login.html" class="btn-nav">
                         <iconify-icon icon="heroicons:user-solid" class="nav-icon"></iconify-icon>
                         <span>Entrar</span>
                     </a>
@@ -42,27 +43,25 @@
         </nav>
     </header>
 
-    <main class="login-contenedor">
-        <div class="login-card">
-            <h2>Iniciar Sesión</h2>
-
-            <div class="login-icono">
-                <iconify-icon icon="heroicons:users-solid"></iconify-icon>
-            </div>
-
-            <form action="" method="">
-                <div class="input-grupo">
-                    <label for="correo-estudiante">Correo Electrónico:</label>
-                    <input type="email" name="correo" id="correo-estudiante" placeholder="e00000@alumnos.com" required>
+    <main class="horarios-contenedor">
+        <div class="materias-card">
+            <div class="tabla-materias">
+                <div class="tabla-row tabla-header">
+                    <div class="celda col-clave">Clave</div>
+                    <div class="celda col-grupo">Grupo</div>
+                    <div class="celda col-materia">Materia</div>
+                    <div class="celda col-profesor">Profesor</div>
+                    <div class="celda col-salon">Salón</div>
+                    <div class="celda col-dia">L</div>
+                    <div class="celda col-dia">M</div>
+                    <div class="celda col-dia">M</div>
+                    <div class="celda col-dia">J</div>
+                    <div class="celda col-dia">V</div>
+                    <div class="celda col-tipo">Tipo</div>
+                    <div class="celda col-cupo">Cupo</div>
                 </div>
 
-                <div class="password grupo">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" name="contrasena" id="password" placeholder="Ingrese la contraseña" required>
                 </div>
-
-                <button type="submit" class="btn-login">Entrar</button>
-            </form>
         </div>
     </main>
 </body>
