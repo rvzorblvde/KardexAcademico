@@ -363,3 +363,137 @@ nav ul {
 .col-dia      { flex: 0 0 4%; justify-content: center; } 
 .col-tipo     { flex: 0 0 8%; justify-content: center; flex-direction: column; gap: 8px; } /* Corregido el nombre para hacer match con el HTML */
 .col-cupo     { flex: 0 0 6%; justify-content: center; }
+
+/* ============= Dashboard Alumno ============= */
+.alumno-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Card de Perfil */
+.perfil-card {
+    background-color: var(--tarjeta1);
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.fecha-sistema {
+    font-weight: 800;
+    color: var(--bg-principal);
+    font-size: 1.2rem;
+}
+
+.foto-placeholder {
+    width: 150px;
+    height: 150px;
+    background-color: var(--color-blanco);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    color: var(--tarjeta2);
+}
+
+.perfil-info {
+    flex: 1;
+    margin-left: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-grupo .label {
+    display: block;
+    font-weight: 800;
+    color: var(--bg-principal);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.info-grupo .valor {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-negro);
+}
+
+/* Botón de Copiar */
+.matricula-copiar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-copy {
+    background: var(--btn-normalf);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    padding: 5px;
+    color: var(--btn-normala);
+}
+
+/* Nav de Alumno */
+.alumno-nav {
+    display: flex;
+    gap: 15px;
+    background-color: var(--azul1);
+    padding: 15px;
+    border-radius: 50px;
+}
+
+.tab-btn {
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    background-color: var(--btn-normalf);
+    color: var(--btn-normala);
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background-color: var(--btn-activof);
+    color: var(--btn-activoa);
+}
+
+.btn-print {
+    margin-left: auto; /* Empuja el botón al final */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Tabla de Calificaciones */
+.tabla-scroll {
+    overflow-x: auto;
+    background: var(--color-blanco);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.tabla-kardex {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.tabla-kardex th {
+    background-color: var(--tarjeta2);
+    color: white;
+    padding: 12px;
+}
+
+.tabla-kardex td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #ddd;
+}
