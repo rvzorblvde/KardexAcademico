@@ -66,7 +66,7 @@
                 <span class="label">Matrícula:</span>
                 <div class="matricula-copiar">
                     <span class="valor" id="matricula">284123</span>
-                    <button class="btn-copy" onclick="copyMatricula()">
+                    <button class="btn-copy" onclick="copiarMatricula()">
                         <iconify-icon icon="heroicons:clipboard-document"></iconify-icon>
                     </button>
                 </div>
@@ -92,36 +92,24 @@
     </nav>
 
     <section class="tab-content">
-        <div class="tabla-scroll">
-            <table class="tabla-kardex">
-                <thead>
-                    <tr>
-                        <th>Materia / Profesor</th>
-                        <th>C1</th><th>F1</th>
-                        <th>C2</th><th>F2</th>
-                        <th>C3</th><th>F3</th>
-                        <th>C4</th><th>F4</th>
-                        <th>EO</th><th>EE</th><th>ET</th><th>ER</th>
-                        <th>Final</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <strong>Programación Web</strong><br>
-                            <small>Francisco Silva</small>
-                        </td>
-                        <td>9</td><td>0</td>
-                        <td>8</td><td>1</td>
-                        <td>-</td><td>-</td>
-                        <td>-</td><td>-</td>
-                        <td></td><td></td><td></td><td></td>
-                        <td><strong>8.5</strong></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div id="tab-calificaciones" class="content-item active">
+            <div class="tabla-scroll">
+                <table class="tabla-kardex">
+                    </table>
+            </div>
+        </div>
+
+        <div id="tab-semestres" class="content-item">
+            <p>Aquí se mostrará el historial académico de años anteriores.</p>
+        </div>
+
+        <div id="tab-estadisticas" class="content-item">
+            <p>Gráficas de promedio y avance de créditos.</p>
         </div>
     </section>
 </main>
 </body>
+
+<script src="scripts/main.js"></script>
+
 </html>
