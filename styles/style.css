@@ -497,3 +497,17 @@ nav ul {
     padding: 15px 10px;
     border-bottom: 1px solid #ddd;
 }
+
+/*Tabs*/
+.content-item {
+    display: none;
+}
+
+.content-item.active {
+    display: block;
+}
+
+.tab-btn.active {
+    background-color: var(--primary-color); 
+    color: white;
+}
