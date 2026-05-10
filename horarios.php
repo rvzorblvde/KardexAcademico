@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="login.html" class="btn-nav">
+                    <a href="login.php" class="btn-nav">
                         <iconify-icon icon="heroicons:user-solid" class="nav-icon"></iconify-icon>
                         <span>Entrar</span>
                     </a>

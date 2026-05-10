@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Si no hay sesión, mandarlo de vuelta al login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,13 +37,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="horarios.html" class="btn-nav">
+                    <a href="horarios.php" class="btn-nav">
                         <iconify-icon icon="heroicons:academic-cap-solid" class="nav-icon"></iconify-icon>
                         <span>Horarios</span>
                     </a>
                 </li>
                 <li>
-                    <a href="login.html" class="btn-nav">
+                    <a href="login.php" class="btn-nav">
                         <iconify-icon icon="heroicons:user-solid" class="nav-icon"></iconify-icon>
                         <span>Entrar</span>
                     </a>
@@ -60,12 +70,12 @@
         <div class="perfil-info">
             <div class="info-grupo">
                 <span class="label">Nombre:</span>
-                <span class="valor">Guillermo Jair Muñoz Amaro</span>
+                <span class="valor"><?php echo $_SESSION['nombre']; ?></span>
             </div>
             <div class="info-grupo">
                 <span class="label">Matrícula:</span>
                 <div class="matricula-copiar">
-                    <span class="valor" id="matricula">284123</span>
+                    <?php echo $_SESSION['user_id']; ?>
                     <button class="btn-copy" onclick="copiarMatricula()">
                         <iconify-icon icon="heroicons:clipboard-document"></iconify-icon>
                     </button>

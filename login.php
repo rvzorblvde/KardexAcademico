@@ -50,7 +50,7 @@
                 <iconify-icon icon="heroicons:users-solid"></iconify-icon>
             </div>
 
-            <form id="login-form" action="login.php" method="POST">
+            <form id="login-form" action="auth.php" method="POST">
                 <div class="input-grupo">
                     <label for="username">Matricula:</label>
                     <div class="input-icon">
