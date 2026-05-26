@@ -1,5 +1,5 @@
 <?php
-include 'conection.php'; // Asegúrate de que este archivo tampoco tenga "echos"
+include 'conection.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,12 +8,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $tabla = ""; $columnaId = ""; $idLimpio = ""; $redirect = "";
 
+    // Identificación de rol por su prefijo
     if (str_starts_with($usuarioInput, 'a')) {
-        $tabla = "Alumno"; $columnaId = "id_alumno"; $idLimpio = substr($usuarioInput, 1); $redirect = "alumno.php";
+        $tabla = "Alumno"; 
+        $columnaId = "id_alumno"; 
+        $idLimpio = substr($usuarioInput, 1); 
+        $redirect = "alumno.php";
     } elseif (str_starts_with($usuarioInput, 'p')) {
-        $tabla = "Profesor"; $columnaId = "id_profesor"; $idLimpio = substr($usuarioInput, 1); $redirect = "profesor.php";
+        $tabla = "Profesor"; 
+        $columnaId = "id_profesor"; 
+        $idLimpio = substr($usuarioInput, 1); 
+        $redirect = "profesor.php";
     } elseif (str_starts_with($usuarioInput, 'sysadmin')) {
-        $tabla = "Administrador"; $columnaId = "id_admin"; $idLimpio = substr($usuarioInput, 8); $redirect = "admin.php";
+        $tabla = "Administrador"; 
+        $columnaId = "id_admin"; 
+        $idLimpio = $usuarioInput;
+        $redirect = "admin.php";
     } else {
         header("Location: login.php?error=formato");
         exit;
@@ -24,20 +34,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$idLimpio]);
         $user = $stmt->fetch();
 
+        // Verificación silenciosa
         if ($user && password_verify($password, $user['password_hash'])) {
-            // CREAR SESIÓN
+            // Guardar datos en la sesión
             $_SESSION['user_id'] = $idLimpio;
             $_SESSION['rol'] = $tabla;
             $_SESSION['nombre'] = $user['Nombres'];
 
-            // REDIRIGIR
+            // Redirigir al panel correspondiente
             header("Location: $redirect");
             exit;
         } else {
+            // Si falla, regresa al login con error genérico
             header("Location: login.php?error=1");
             exit;
         }
+
     } catch (PDOException $e) {
-        die("Error: " . $e->getMessage());
+        // En caso de error de BD, no mostrar detalles al usuario
+        header("Location: login.php?error=db");
+        exit;
     }
 }
