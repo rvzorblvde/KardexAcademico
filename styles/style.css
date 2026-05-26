@@ -652,3 +652,8 @@ nav ul {
     font-weight: 700;
     margin-bottom: 20px;
 }
+
+.btn-tabla:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
