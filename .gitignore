@@ -1,2 +1,4 @@
 # Ignorar el archivo del area de trabajo
 *.code-workspace
+password-repair.php
+generar_hash.php
