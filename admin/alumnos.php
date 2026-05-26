@@ -1,6 +1,6 @@
 <?php 
 require_once __DIR__ . '/../includes/auth_admin.php';
-require_once __DIR__ . '/../conection.php';
+require_once __DIR__ . '/../includes/connection.php';
 
 // Determinar si estamos editando un alumno existente
 $alumno_editar = null;
