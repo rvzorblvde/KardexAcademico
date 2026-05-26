@@ -50,6 +50,9 @@ require_once 'includes/auth_admin.php'; ?>
         </section>
 
         <nav class="alumno-nav">
+            <a href="admin/carreras.php" class="tab-tbn">
+                <iconify-icon icon="heroicons:building-library-solid"></iconify-icon> Carreras
+            </a>
             <a href="admin/alumnos.php" class="tab-btn">
                 <iconify-icon icon="heroicons:user-group-solid"></iconify-icon> Alumnos
             </a>
