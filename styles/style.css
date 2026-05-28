@@ -454,6 +454,7 @@ nav ul {
     padding: 10px 25px;
     border-radius: 30px;
     border: none;
+    text-decoration: none;
     background-color: var(--btn-normalf);
     color: var(--btn-normala);
     font-weight: 800;

@@ -1,7 +1,4 @@
-<?php 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php
 require_once 'includes/auth_admin.php'; ?>
 
 <!DOCTYPE html>
@@ -50,17 +47,17 @@ require_once 'includes/auth_admin.php'; ?>
         </section>
 
         <nav class="alumno-nav">
-            <a href="admin/carreras.php" class="tab-tbn">
+            <a href="admin/carreras.php" class="tab-btn">
                 <iconify-icon icon="heroicons:building-library-solid"></iconify-icon> Carreras
+            </a>
+            <a href="admin/materias.php" class="tab-btn">
+                <iconify-icon icon="heroicons:book-open-solid"></iconify-icon> Materias
             </a>
             <a href="admin/alumnos.php" class="tab-btn">
                 <iconify-icon icon="heroicons:user-group-solid"></iconify-icon> Alumnos
             </a>
             <a href="admin/profesores.php" class="tab-btn">
                 <iconify-icon icon="heroicons:academic-cap-solid"></iconify-icon> Profesores
-            </a>
-            <a href="admin/materias.php" class="tab-btn">
-                <iconify-icon icon="heroicons:book-open-solid"></iconify-icon> Materias
             </a>
             <a href="admin/grupos.php" class="tab-btn">
                 <iconify-icon icon="heroicons:rectangle-stack-solid"></iconify-icon> Grupos
