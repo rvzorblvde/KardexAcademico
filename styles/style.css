@@ -658,3 +658,24 @@ nav ul {
     opacity: 0.4;
     cursor: not-allowed;
 }
+
+/* Estados visuales de profesor */
+.estado-pill {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+.estado-pill.activo   { background: #86efac; color: #14532d; }
+.estado-pill.inactivo { background: #fca5a5; color: #7f1d1d; }
+
+.fila-inactiva { opacity: 0.55; }
+
+.btn-tabla.btn-verde { background: #16a34a; color: white; }
+
+.form-acciones {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
