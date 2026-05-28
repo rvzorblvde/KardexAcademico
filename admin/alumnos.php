@@ -53,7 +53,7 @@ $msg = $_GET['msg'] ?? null;
         <!-- ============ FORMULARIO (crear o editar) ============ -->
         <section class="perfil-card">
             <h2><?= $alumno_editar ? 'Editar' : 'Nuevo' ?> alumno</h2>
-            <form action="acciones/alumno_guardar.php" method="POST" class="form-admin">
+            <form action="actions/alumno_guardar.php" method="POST" class="form-admin">
                 <?php if ($alumno_editar): ?>
                     <input type="hidden" name="id_alumno_original" value="<?= $alumno_editar['id_alumno'] ?>">
                 <?php endif; ?>
@@ -130,7 +130,7 @@ $msg = $_GET['msg'] ?? null;
                             <a href="?editar=<?= $a['id_alumno'] ?>" class="btn-tabla">
                                 <iconify-icon icon="heroicons:pencil-square-solid"></iconify-icon>
                             </a>
-                            <form action="acciones/alumno_eliminar.php" method="POST" style="display:inline"
+                            <form action="actions/alumno_eliminar.php" method="POST" style="display:inline"
                                   onsubmit="return confirm('¿Dar de baja a este alumno?')">
                                 <input type="hidden" name="id_alumno" value="<?= $a['id_alumno'] ?>">
                                 <button type="submit" class="btn-tabla btn-rojo">

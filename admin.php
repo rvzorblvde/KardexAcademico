@@ -47,6 +47,9 @@ require_once 'includes/auth_admin.php'; ?>
         </section>
 
         <nav class="alumno-nav">
+            <a href="admin/semestres.php" class="tab-btn">
+                <iconify-icon icon="heroicons:calendar-days-solid"></iconify-icon> Semestres
+            </a>
             <a href="admin/carreras.php" class="tab-btn">
                 <iconify-icon icon="heroicons:building-library-solid"></iconify-icon> Carreras
             </a>
