@@ -65,9 +65,6 @@ require_once 'includes/auth_admin.php'; ?>
             <a href="admin/grupos.php" class="tab-btn">
                 <iconify-icon icon="heroicons:rectangle-stack-solid"></iconify-icon> Grupos
             </a>
-            <a href="admin/calificaciones.php" class="tab-btn">
-                <iconify-icon icon="heroicons:document-chart-bar-solid"></iconify-icon> Calificaciones
-            </a>
         </nav>
     </main>
 </body>

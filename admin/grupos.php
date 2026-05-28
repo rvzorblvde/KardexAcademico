@@ -268,6 +268,13 @@ $msg = $_GET['msg'] ?? null;
                                 <a href="grupo_horarios.php?<?= $params ?>" class="btn-tabla" title="Gestionar horarios" style="background: #1d76db; color: white;">
                                     <iconify-icon icon="heroicons:clock-solid"></iconify-icon>
                                 </a>
+                                <form action="actions/grupo_eliminar.php" method="POST" style="display:inline" ...>
+                                <a href="grupo_inscripciones.php?<?= $params ?>" class="btn-tabla" title="Gestionar inscripciones" style="background: #16a34a; color: white;">
+                                    <iconify-icon icon="heroicons:user-plus-solid"></iconify-icon>
+                                </a>
+                                <a href="grupo_calificaciones.php?<?= $params ?>" class="btn-tabla" title="Capturar calificaciones" style="background: #7c3aed; color: white;">
+                                    <iconify-icon icon="heroicons:document-chart-bar-solid"></iconify-icon>
+                                </a>
                                 <form action="actions/grupo_eliminar.php" method="POST" style="display:inline"
                                       onsubmit="return confirm('¿Eliminar el grupo <?= $g['num_grupo'] ?> de <?= htmlspecialchars($g['clave_materia']) ?>? Esta acción es permanente.')">
                                     <input type="hidden" name="num_grupo"     value="<?= $g['num_grupo'] ?>">

@@ -679,3 +679,33 @@ nav ul {
     gap: 15px;
     justify-content: center;
 }
+
+/* Tabla de captura de calificaciones */
+.tabla-calificaciones th[colspan] {
+    background: var(--bg-principal);
+    color: var(--color-blanco);
+    text-align: center;
+}
+
+.tabla-calificaciones .input-calif {
+    width: 60px;
+    padding: 6px 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.tabla-calificaciones .input-calif:focus {
+    outline: 2px solid var(--btn-normalf);
+    border-color: var(--btn-normalf);
+}
+
+.tabla-calificaciones .input-inasist {
+    width: 50px;
+    background: #fff7ed;
+}
+
+.tabla-calificaciones td {
+    padding: 8px 4px;
+}
