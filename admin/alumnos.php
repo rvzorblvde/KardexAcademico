@@ -111,38 +111,55 @@ $msg = $_GET['msg'] ?? null;
         </section>
 
         <!-- ============ LISTADO ============ -->
-        <section class="tabla-scroll">
-            <table class="tabla-kardex">
-                <thead>
-                    <tr>
-                        <th>Matrícula</th><th>Nombre completo</th><th>Carrera</th>
-                        <th>Estado</th><th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($alumnos as $a): ?>
-                    <tr>
-                        <td><?= $a['id_alumno'] ?></td>
-                        <td><?= htmlspecialchars("{$a['Nombres']} {$a['Apellido1']} {$a['Apellido2']}") ?></td>
-                        <td><?= htmlspecialchars($a['carrera']) ?></td>
-                        <td><?= $a['activo'] ? 'Activo' : 'Baja' ?></td>
-                        <td>
-                            <a href="?editar=<?= $a['id_alumno'] ?>" class="btn-tabla">
-                                <iconify-icon icon="heroicons:pencil-square-solid"></iconify-icon>
-                            </a>
-                            <form action="actions/alumno_eliminar.php" method="POST" style="display:inline"
-                                  onsubmit="return confirm('¿Dar de baja a este alumno?')">
-                                <input type="hidden" name="id_alumno" value="<?= $a['id_alumno'] ?>">
-                                <button type="submit" class="btn-tabla btn-rojo">
-                                    <iconify-icon icon="heroicons:trash-solid"></iconify-icon>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </section>
+<section class="tabla-scroll">
+    <table class="tabla-kardex">
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Nombre completo</th>
+                <th>Carrera</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($alumnos as $a): ?>
+            <tr class="<?= $a['activo'] ? '' : 'fila-inactiva' ?>">
+                <td><?= $a['id_alumno'] ?></td>
+                <td><?= htmlspecialchars("{$a['Nombres']} {$a['Apellido1']} {$a['Apellido2']}") ?></td>
+                <td><?= htmlspecialchars($a['carrera']) ?></td>
+                <td>
+                    <span class="estado-pill <?= $a['activo'] ? 'activo' : 'inactivo' ?>">
+                        <?= $a['activo'] ? 'Activo' : 'Baja' ?>
+                    </span>
+                </td>
+                <td>
+                    <a href="?editar=<?= $a['id_alumno'] ?>" class="btn-tabla" title="Editar">
+                        <iconify-icon icon="heroicons:pencil-square-solid"></iconify-icon>
+                    </a>
+                    
+                    <?php if ($a['activo']): ?>
+                        <form action="actions/alumno_eliminar.php" method="POST" style="display:inline"
+                              onsubmit="return confirm('¿Dar de baja a este alumno?')">
+                            <input type="hidden" name="id_alumno" value="<?= $a['id_alumno'] ?>">
+                            <button type="submit" class="btn-tabla btn-rojo" title="Dar de baja">
+                                <iconify-icon icon="heroicons:user-minus-solid"></iconify-icon>
+                            </button>
+                        </form>
+                    <?php else: ?>
+                        <form action="actions/alumno_reactivar.php" method="POST" style="display:inline">
+                            <input type="hidden" name="id_alumno" value="<?= $a['id_alumno'] ?>">
+                            <button type="submit" class="btn-tabla btn-verde" title="Reactivar">
+                                <iconify-icon icon="heroicons:arrow-path-solid"></iconify-icon>
+                            </button>
+                        </form>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</section>
     </main>
 </body>
 </html>
