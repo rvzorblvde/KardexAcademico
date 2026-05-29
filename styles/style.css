@@ -741,3 +741,135 @@ nav ul {
     padding: 60px 20px;
     font-style: italic;
 }
+
+/* ============= KPIs del alumno ============= */
+.kpis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.kpi-card {
+    background: var(--tarjeta1);
+    border-radius: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.kpi-card.kpi-verde   { background: #d1fae5; }
+.kpi-card.kpi-azul    { background: #dbeafe; }
+.kpi-card.kpi-naranja { background: #fed7aa; }
+
+.kpi-icono {
+    font-size: 2.5rem;
+    color: var(--bg-principal);
+    margin-bottom: 10px;
+}
+
+.kpi-numero {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-negro);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.kpi-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--bg-principal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============= Tabla de horario ============= */
+.tabla-horario td {
+    height: 80px;
+    vertical-align: middle;
+    border: 1px solid #e5e7eb;
+}
+
+.tabla-horario .celda-hora {
+    background: var(--tarjeta2);
+    color: var(--color-blanco);
+    width: 110px;
+    text-align: center;
+}
+
+.tabla-horario .celda-clase {
+    background: var(--tarjeta1);
+    text-align: center;
+    padding: 10px;
+}
+
+.tabla-horario .celda-clase strong {
+    color: var(--bg-principal);
+    font-size: 1.05rem;
+}
+
+.tabla-horario .celda-clase small {
+    color: #444;
+    display: block;
+    margin-top: 3px;
+}
+
+/* ============= Vista pública de horarios ============= */
+.horarios-publica {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.filtros-card {
+    background-color: var(--color-blanco);
+    border-radius: 20px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.filtros-card h2 {
+    color: var(--bg-principal);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filtros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    align-items: end;
+}
+
+.filtros-grid .input-grupo label {
+    color: var(--bg-principal);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.filtros-grid select,
+.filtros-grid input[type="text"] {
+    width: 100%;
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.filtros-grid select:focus,
+.filtros-grid input:focus {
+    outline: 2px solid var(--btn-normalf);
+    border-color: var(--btn-normalf);
+}
+
+.filtros-grid .input-icon input {
+    padding-left: 40px;
+}
