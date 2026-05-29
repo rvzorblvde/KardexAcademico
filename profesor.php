@@ -43,6 +43,7 @@ $grupos_archivo = array_filter($grupos, fn($g) => !$g['semestre_activo']);
     <title>Panel Profesor — Kárdex Académico</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -69,7 +70,7 @@ $grupos_archivo = array_filter($grupos, fn($g) => !$g['semestre_activo']);
     </header>
 
     <main class="alumno-contenedor">
-        <!-- ============ INFO DEL PROFESOR ============ -->
+        <!-- Info profe -->
         <section class="perfil-card">
             <div class="perfil-info">
                 <div class="info-grupo">
@@ -91,7 +92,7 @@ $grupos_archivo = array_filter($grupos, fn($g) => !$g['semestre_activo']);
             </div>
         </section>
 
-        <!-- ============ GRUPOS DEL SEMESTRE ACTIVO ============ -->
+        <!-- Actvio -->
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Mis grupos vigentes</h2>
 
@@ -144,7 +145,7 @@ $grupos_archivo = array_filter($grupos, fn($g) => !$g['semestre_activo']);
             <?php endif; ?>
         </section>
 
-        <!-- ============ GRUPOS ARCHIVADOS (HISTORIAL) ============ -->
+        <!-- Archivados -->
         <?php if (count($grupos_archivo) > 0): ?>
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Historial de grupos</h2>

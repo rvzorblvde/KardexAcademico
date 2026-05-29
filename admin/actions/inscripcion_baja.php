@@ -33,7 +33,6 @@ try {
         $msg = "No se puede dar de baja: el alumno tiene calificaciones registradas. " .
                "Elimina sus calificaciones primero o cambia su estado manualmente.";
     } else {
-        // Marca la inscripción como Baja (estado lógico, no la borramos)
         $sql = "UPDATE Inscripcion SET Estado = 'Baja' 
                 WHERE id_alumno = ? AND num_grupo = ? AND id_profesor = ? 
                   AND clave_materia = ? AND id_semestre = ?";

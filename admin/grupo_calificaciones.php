@@ -64,7 +64,7 @@ $stmt = $pdo->prepare("
 $stmt->execute([$num_grupo, $id_profesor, $clave_materia, $id_semestre]);
 $alumnos = $stmt->fetchAll();
 
-// Cargar calificaciones existentes en una matriz [id_alumno][tipo_num] => calificacion
+// Cargar calificaciones
 $calificaciones_db = [];
 $inasistencias_db = [];
 
@@ -105,6 +105,7 @@ $msg = $_GET['msg'] ?? null;
     <title>Calificaciones del grupo</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -128,7 +129,6 @@ $msg = $_GET['msg'] ?? null;
             <div class="alerta-flash"><?= htmlspecialchars($msg) ?></div>
         <?php endif; ?>
 
-        <!-- ============ INFO DEL GRUPO ============ -->
         <section class="perfil-card">
             <div class="perfil-info">
                 <div class="info-grupo">
@@ -158,7 +158,6 @@ $msg = $_GET['msg'] ?? null;
             </div>
         </section>
 
-        <!-- ============ TABLA DE CALIFICACIONES ============ -->
         <?php if (count($alumnos) === 0): ?>
             <section class="tabla-scroll">
                 <p style="color: #999; padding: 20px; text-align: center;">

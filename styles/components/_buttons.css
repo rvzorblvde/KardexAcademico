@@ -142,3 +142,10 @@
     gap: 15px;
     justify-content: center;
 }
+
+/* Copiado correctamente */
+.btn-copy.btn-copy-success {
+    background: var(--color-verde);
+    color: var(--color-blanco);
+    transition: background var(--transicion-rapida);
+}

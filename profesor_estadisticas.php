@@ -9,9 +9,7 @@ $stmt = $pdo->prepare("SELECT Nombres, Apellido1 FROM Profesor WHERE id_profesor
 $stmt->execute([$id_profesor]);
 $profesor = $stmt->fetch();
 
-// ============ DATA 1: Reprobación por grupo ============
-// Para cada grupo del profesor, contar aprobados/reprobados/sin calificar.
-// "Mejor calificación final" = máximo entre EO, EE, ET, ER.
+// Reprobados por grupo
 $sql_grupos = "
     SELECT 
         g.num_grupo, g.clave_materia, g.id_semestre,
@@ -57,14 +55,12 @@ $stmt = $pdo->prepare($sql_grupos);
 $stmt->execute([$id_profesor]);
 $grupos_stats = $stmt->fetchAll();
 
-// Calcular sin_calificar y formatear para la gráfica
 foreach ($grupos_stats as &$g) {
     $g['sin_calificar'] = $g['total_inscritos'] - $g['aprobados'] - $g['reprobados'];
 }
 unset($g);
 
-// ============ DATA 2: Reprobación por materia (agregada) ============
-// Igual que arriba pero agrupado por clave_materia, sumando todos los grupos del profesor.
+// Reprobados por materia
 $sql_materias = "
     SELECT 
         g.clave_materia,
@@ -114,9 +110,7 @@ $materias_stats = $stmt->fetchAll();
 $total_aprobados_global = array_sum(array_column($materias_stats, 'aprobados'));
 $total_reprobados_global = array_sum(array_column($materias_stats, 'reprobados'));
 
-// ============ DATA 3: Distribución de calificaciones (histograma) ============
-// Para todos los exámenes (EO/EE/ET/ER) registrados por este profesor.
-// Cuenta cuántas calificaciones caen en cada bucket: [0-1), [1-2), ..., [9-10].
+// Distribución de calififaciones
 $sql_dist = "
     SELECT calificacion
     FROM Calificacion
@@ -127,7 +121,7 @@ $stmt = $pdo->prepare($sql_dist);
 $stmt->execute([$id_profesor]);
 $todas_calificaciones = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-// Inicializar buckets 0-10
+// Inicializar cals 0-10
 $buckets = array_fill(0, 11, 0);
 foreach ($todas_calificaciones as $c) {
     $bucket = (int) floor($c);
@@ -165,7 +159,8 @@ $hay_datos_dist     = count($todas_calificaciones) > 0;
     <title>Estadísticas — Panel Profesor</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
-    <!-- Chart.js v4 desde CDN -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <!-- Chart.js  -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -203,7 +198,7 @@ $hay_datos_dist     = count($todas_calificaciones) > 0;
             </div>
         </section>
 
-        <!-- ============ GRAFICA 1: Barras por grupo ============ -->
+        <!-- Barras por grupo -->
         <section class="chart-card">
             <h2>Reprobación por grupo</h2>
             <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem;">
@@ -218,7 +213,7 @@ $hay_datos_dist     = count($todas_calificaciones) > 0;
             <?php endif; ?>
         </section>
 
-        <!-- ============ GRAFICA 2: Pastel general ============ -->
+        <!-- Pastel general -->
         <section class="chart-card">
             <h2>Reprobación global (todas tus materias)</h2>
             <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem;">
@@ -233,7 +228,7 @@ $hay_datos_dist     = count($todas_calificaciones) > 0;
             <?php endif; ?>
         </section>
 
-        <!-- ============ GRAFICA 3: Distribución ============ -->
+        <!-- Distribución -->
         <section class="chart-card">
             <h2>Distribución de calificaciones</h2>
             <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem;">
@@ -250,12 +245,12 @@ $hay_datos_dist     = count($todas_calificaciones) > 0;
     </main>
 
     <script>
-    // ============ DATOS DESDE PHP ============
+    // DATOS DESDE PHP 
     const dataGrupos = <?= json_encode($data_grupos) ?>;
     const dataPastel = <?= json_encode($data_pastel) ?>;
     const dataDist   = <?= json_encode($data_dist) ?>;
 
-    // Paleta consistente con tu CSS
+    // Colores
     const colores = {
         aprobado: '#769127',      // verde tipo --btn-activof
         reprobado: '#dc2626',     // rojo
@@ -264,7 +259,7 @@ $hay_datos_dist     = count($todas_calificaciones) > 0;
         bar_border: '#114B5F'     // azul oscuro
     };
 
-    // ============ GRÁFICA 1: Barras apiladas por grupo ============
+    // Barras por grupo
     <?php if ($hay_datos_grupos): ?>
     new Chart(document.getElementById('chart_grupos'), {
         type: 'bar',
@@ -307,7 +302,7 @@ $hay_datos_dist     = count($todas_calificaciones) > 0;
     });
     <?php endif; ?>
 
-    // ============ GRÁFICA 2: Pastel ============
+    // Pastel 
     <?php if ($hay_datos_pastel): ?>
     new Chart(document.getElementById('chart_pastel'), {
         type: 'pie',
@@ -339,7 +334,7 @@ $hay_datos_dist     = count($todas_calificaciones) > 0;
     });
     <?php endif; ?>
 
-    // ============ GRÁFICA 3: Histograma ============
+    // Histograma
     <?php if ($hay_datos_dist): ?>
     new Chart(document.getElementById('chart_dist'), {
         type: 'bar',

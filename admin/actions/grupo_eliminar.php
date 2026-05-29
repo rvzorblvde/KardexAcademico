@@ -33,8 +33,6 @@ try {
         exit();
     }
 
-    // Eliminar horarios asociados primero (no tienen "cascade" en el schema)
-    // y luego el grupo. Lo hacemos en transacción.
     $pdo->beginTransaction();
     
     $sqlHorarios = "DELETE FROM Horario 

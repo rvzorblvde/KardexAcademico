@@ -1,2 +1,0 @@
-*.sql linguist-languaje=SQL
-database/* linguist-vendored=false

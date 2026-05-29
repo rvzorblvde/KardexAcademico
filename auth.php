@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $tabla = ""; $columnaId = ""; $idLimpio = ""; $redirect = "";
 
-    // Identificación de rol por su prefijo
+    // Identificación de tipo
     if (str_starts_with($usuarioInput, 'a')) {
         $tabla = "Alumno"; 
         $columnaId = "id_alumno"; 
@@ -34,24 +34,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$idLimpio]);
         $user = $stmt->fetch();
 
-        // Verificación silenciosa
+        // Verificación
         if ($user && password_verify($password, $user['password_hash'])) {
             // Guardar datos en la sesión
             $_SESSION['user_id'] = $idLimpio;
             $_SESSION['rol'] = $tabla;
             $_SESSION['nombre'] = $user['Nombres'];
 
-            // Redirigir al panel correspondiente
+            // Redirigir
             header("Location: $redirect");
             exit;
         } else {
-            // Si falla, regresa al login con error genérico
+            // Error de lgin
             header("Location: login.php?error=1");
             exit;
         }
 
     } catch (PDOException $e) {
-        // En caso de error de BD, no mostrar detalles al usuario
+        // En caso de error de BD no mostrar detalles
         header("Location: login.php?error=db");
         exit;
     }

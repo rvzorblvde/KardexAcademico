@@ -38,8 +38,6 @@ if ($creditos < 1) {
 
 try {
     if ($clave_original) {
-        // ===== ACTUALIZAR =====
-        // Si cambia la clave y hay grupos asociados, bloqueamos
         if ($clave_original !== $clave_materia) {
             $check = $pdo->prepare("SELECT COUNT(*) FROM Grupo WHERE clave_materia = ?");
             $check->execute([$clave_original]);
@@ -58,7 +56,6 @@ try {
         ]);
         $msg = "Materia actualizada correctamente";
     } else {
-        // ===== INSERTAR =====
         $sql = "INSERT INTO Materia (clave_materia, nombre, id_carrera, creditos, num_parciales) 
                 VALUES (?, ?, ?, ?, ?)";
         $pdo->prepare($sql)->execute([

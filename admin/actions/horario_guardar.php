@@ -18,7 +18,6 @@ $dia         = trim($_POST['dia']);
 $hora_inicio = $_POST['hora_inicio'];
 $hora_fin    = $_POST['hora_fin'];
 
-// Querystring para redirigir de vuelta al mismo grupo
 $params_grupo = http_build_query([
     'num_grupo'     => $num_grupo,
     'id_profesor'   => $id_profesor,

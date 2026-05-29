@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/connection.php';
 
 $id_profesor = $_SESSION['user_id'];
 
-// Validar PK del grupo (el id_profesor lo tomamos de la sesión, no de la URL)
+// PK del grupo
 $campos = ['num_grupo', 'clave_materia', 'id_semestre'];
 foreach ($campos as $c) {
     if (!isset($_GET[$c]) || $_GET[$c] === '') {
@@ -17,7 +17,6 @@ $num_grupo     = (int) $_GET['num_grupo'];
 $clave_materia = $_GET['clave_materia'];
 $id_semestre   = $_GET['id_semestre'];
 
-// Verificar que ESTE grupo le pertenece al profesor logueado
 $stmt = $pdo->prepare("
     SELECT g.*, 
            m.nombre AS materia_nombre,
@@ -41,7 +40,6 @@ if (!$grupo) {
 $num_parciales = (int) $grupo['num_parciales'];
 $solo_lectura = !$grupo['semestre_activo'];
 
-// Generar columnas según num_parciales de la materia
 $columnas = [];
 for ($i = 1; $i <= $num_parciales; $i++) {
     $columnas[] = ['tipo' => 'Parcial', 'num' => $i, 'label' => "P$i"];
@@ -51,7 +49,6 @@ $columnas[] = ['tipo' => 'EE', 'num' => null, 'label' => 'EE'];
 $columnas[] = ['tipo' => 'ET', 'num' => null, 'label' => 'ET'];
 $columnas[] = ['tipo' => 'ER', 'num' => null, 'label' => 'ER'];
 
-// Alumnos inscritos activos
 $stmt = $pdo->prepare("
     SELECT i.id_alumno,
            CONCAT(a.Nombres, ' ', a.Apellido1, ' ', COALESCE(a.Apellido2, '')) AS nombre_completo

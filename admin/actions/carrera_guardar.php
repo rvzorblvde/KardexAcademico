@@ -23,12 +23,12 @@ if ($nombre === '') {
 
 try {
     if ($id_carrera) {
-        // ===== ACTUALIZAR =====
+        // actualizaar
         $sql = "UPDATE Carrera SET clave_carrera = ?, Nombre = ? WHERE id_carrera = ?";
         $pdo->prepare($sql)->execute([$clave_carrera, $nombre, (int) $id_carrera]);
         $msg = "Carrera actualizada correctamente";
     } else {
-        // ===== INSERTAR =====
+        // insertar
         $sql = "INSERT INTO Carrera (clave_carrera, Nombre) VALUES (?, ?)";
         $pdo->prepare($sql)->execute([$clave_carrera, $nombre]);
         $msg = "Carrera creada correctamente";
@@ -36,7 +36,6 @@ try {
 
     header("Location: ../carreras.php?msg=" . urlencode($msg));
 } catch (PDOException $e) {
-    // 23000 = violación de constraint (clave única duplicada)
     $errorMsg = $e->getCode() === '23000'
         ? "Ya existe una carrera con esa clave"
         : "Error: " . $e->getMessage();

@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../includes/auth_admin.php';
 require_once __DIR__ . '/../includes/connection.php';
 
-// Modo edición: la PK compuesta viene como 4 parámetros en la URL
 $grupo_editar = null;
 if (isset($_GET['num_grupo'], $_GET['id_profesor'], $_GET['clave_materia'], $_GET['id_semestre'])) {
     $stmt = $pdo->prepare("
@@ -19,7 +18,6 @@ if (isset($_GET['num_grupo'], $_GET['id_profesor'], $_GET['clave_materia'], $_GE
     $grupo_editar = $stmt->fetch() ?: null;
 }
 
-// Listado con JOIN a profesor, materia y semestre + contadores
 $grupos = $pdo->query("
     SELECT 
         g.num_grupo, g.id_profesor, g.clave_materia, g.id_semestre,
@@ -75,6 +73,7 @@ $msg = $_GET['msg'] ?? null;
     <title>Gestionar Grupos</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -116,7 +115,6 @@ $msg = $_GET['msg'] ?? null;
             </div>
         <?php else: ?>
 
-        <!-- ============ FORMULARIO ============ -->
         <section class="perfil-card">
             <h2><?= $grupo_editar ? 'Editar grupo' : 'Nuevo grupo' ?></h2>
 
@@ -204,7 +202,6 @@ $msg = $_GET['msg'] ?? null;
 
         <?php endif; ?>
 
-        <!-- ============ LISTADO ============ -->
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Grupos registrados (<?= count($grupos) ?>)</h2>
 

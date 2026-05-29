@@ -31,7 +31,7 @@ if (!$id_original && strlen($password) < 6) {
 
 try {
     if ($id_original) {
-        // ===== ACTUALIZAR =====
+        // actualizar
         if ($password !== '') {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $sql = "UPDATE Profesor 
@@ -50,7 +50,7 @@ try {
         $pdo->prepare($sql)->execute($params);
         $msg = "Profesor actualizado correctamente";
     } else {
-        // ===== INSERTAR =====
+        // insertar
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO Profesor (id_profesor, Nombres, Apellido1, Apellido2, 
                                       fecha_nacimiento, password_hash) 

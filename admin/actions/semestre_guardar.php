@@ -23,7 +23,7 @@ if ($nombre === '' || strlen($nombre) > 30) {
 
 try {
     if ($id_original) {
-        // ===== ACTUALIZAR =====
+        // actualizar
         // Si cambia el ID y hay grupos asociados, bloqueamos
         if ($id_original !== $id_semestre) {
             $check = $pdo->prepare("SELECT COUNT(*) FROM Grupo WHERE id_semestre = ?");
@@ -39,7 +39,7 @@ try {
         $pdo->prepare($sql)->execute([$id_semestre, $nombre, $id_original]);
         $msg = "Semestre actualizado correctamente";
     } else {
-        // ===== INSERTAR =====
+        // insertar
         // Los semestres nuevos se crean siempre inactivos
         $sql = "INSERT INTO Semestre (id_semestre, nombre, activo) VALUES (?, ?, FALSE)";
         $pdo->prepare($sql)->execute([$id_semestre, $nombre]);

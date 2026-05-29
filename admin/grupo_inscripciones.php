@@ -51,7 +51,7 @@ $stmt = $pdo->prepare("
 $stmt->execute([$num_grupo, $id_profesor, $clave_materia, $id_semestre]);
 $inscritos = $stmt->fetchAll();
 
-// Alumnos disponibles para inscribir (activos, de la misma carrera de la materia, no inscritos ya en este grupo)
+// Alumnos disponibles para inscribir
 $stmt = $pdo->prepare("
     SELECT a.id_alumno, 
            CONCAT(a.Nombres, ' ', a.Apellido1, ' ', COALESCE(a.Apellido2, '')) AS nombre_completo
@@ -89,6 +89,7 @@ $params_grupo = http_build_query([
     <title>Inscripciones del grupo</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -112,7 +113,6 @@ $params_grupo = http_build_query([
             <div class="alerta-flash"><?= htmlspecialchars($msg) ?></div>
         <?php endif; ?>
 
-        <!-- ============ INFO DEL GRUPO ============ -->
         <section class="perfil-card">
             <div class="perfil-info">
                 <div class="info-grupo">
@@ -142,17 +142,17 @@ $params_grupo = http_build_query([
             </div>
         </section>
 
-        <!-- ============ INSCRIBIR NUEVO ALUMNO ============ -->
+        <!-- inscribir nuevo alumno -->
         <section class="perfil-card">
             <h2>Inscribir alumno</h2>
 
             <?php if (count($disponibles) === 0): ?>
                 <p style="color: #999; padding: 10px;">
-                    No hay alumnos disponibles para inscribir (los activos de esta carrera ya están inscritos).
+                    No hay alumnos disponibles para inscribir
                 </p>
             <?php elseif ($cupo_disponible <= 0): ?>
                 <p style="color: #b91c1c; padding: 10px; font-weight: 700;">
-                    El grupo ha alcanzado su cupo máximo. Da de baja a algún alumno o aumenta el cupo desde el módulo de grupos.
+                    El grupo ha alcanzado su cupo máximo
                 </p>
             <?php else: ?>
                 <form action="actions/inscripcion_guardar.php" method="POST" class="form-admin">
@@ -182,7 +182,7 @@ $params_grupo = http_build_query([
             <?php endif; ?>
         </section>
 
-        <!-- ============ LISTADO DE INSCRITOS ============ -->
+        <!-- lista de inscritos -->
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Inscritos (<?= count($inscritos) ?>)</h2>
 

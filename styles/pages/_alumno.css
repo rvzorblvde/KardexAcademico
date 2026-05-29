@@ -92,3 +92,50 @@
     display: block;
     margin-top: 3px;
 }
+
+/* ============ Foto del alumno ============ */
+.foto-alumno {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+}
+
+.foto-alumno img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radio-lg);
+    border: 3px solid var(--color-blanco);
+    box-shadow: var(--sombra-card);
+}
+
+/* Preview en el form del admin */
+.foto-preview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.foto-preview img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radio-md);
+    border: 2px solid var(--azul1);
+}
+
+.foto-preview span {
+    color: var(--bg-principal);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.perfil-card {
+    background-color: var(--tarjeta1);
+    border-radius: var(--radio-xl);
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}

@@ -31,6 +31,7 @@ $msg = $_GET['msg'] ?? null;
     <title>Gestionar Alumnos</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -53,12 +54,29 @@ $msg = $_GET['msg'] ?? null;
         <!-- ============ FORMULARIO (crear o editar) ============ -->
         <section class="perfil-card">
             <h2><?= $alumno_editar ? 'Editar' : 'Nuevo' ?> alumno</h2>
-            <form action="actions/alumno_guardar.php" method="POST" class="form-admin">
+            <form action="actions/alumno_guardar.php" method="POST" enctype="multipart/form-data" class="form-admin">
                 <?php if ($alumno_editar): ?>
                     <input type="hidden" name="id_alumno_original" value="<?= $alumno_editar['id_alumno'] ?>">
                 <?php endif; ?>
 
                 <div class="form-grid">
+                    <div class="input-grupo" style="grid-column: 1 / -1;">
+                        <label>Foto del alumno:</label>
+                        
+                        <?php if ($alumno_editar && !empty($alumno_editar['foto'])):
+                            $url_foto = "../assets/uploads/alumnos/" . $alumno_editar['foto'];
+                        ?>
+                            <div class="foto-preview">
+                                <img src="<?= htmlspecialchars($url_foto) ?>" alt="Foto actual">
+                                <span>Foto actual</span>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <input type="file" name="foto" accept="image/jpeg,image/png,image/webp">
+                        <small style="color: #666;">
+                            Opcional. Máximo 2 MB. Formatos: JPG, PNG, WebP.
+                        </small>
+                    </div>
                     <div class="input-grupo">
                         <label>Matrícula:</label>
                         <input type="number" name="id_alumno" required maxlength="6"
@@ -110,7 +128,6 @@ $msg = $_GET['msg'] ?? null;
             </form>
         </section>
 
-        <!-- ============ LISTADO ============ -->
 <section class="tabla-scroll">
     <table class="tabla-kardex">
         <thead>
@@ -161,5 +178,6 @@ $msg = $_GET['msg'] ?? null;
     </table>
 </section>
     </main>
+<script src="../scripts/admin.js"></script>
 </body>
 </html>

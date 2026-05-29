@@ -3,17 +3,17 @@
     background-color: var(--tarjeta1);
     border-radius: var(--radio-xl);
     padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 30px;
+    align-items: center;
     animation: fadeInUp 0.5s ease-out;
 }
 
 .perfil-info {
-    flex: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px 30px;                     
 }
 
 .info-grupo .label {
@@ -102,4 +102,64 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.foto-preview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: var(--color-blanco);
+    border-radius: var(--radio-md);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.foto-preview img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radio-md);
+    border: 2px solid var(--azul1);
+}
+
+.foto-preview span {
+    color: var(--bg-principal);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.foto-preview-nueva {
+    border: 2px dashed var(--btn-normalf);
+    background: #fff7ed;
+}
+
+.foto-preview-nueva span {
+    color: var(--btn-normala);
+}
+
+.foto-alumno {
+    width: 150px;
+    height: 150px;
+}
+
+.foto-alumno img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radio-lg);
+    border: 3px solid var(--color-blanco);
+    box-shadow: var(--sombra-card);
+}
+
+.foto-alumno .foto-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    color: var(--tarjeta2);
 }

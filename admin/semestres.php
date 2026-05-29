@@ -28,6 +28,7 @@ $msg = $_GET['msg'] ?? null;
     <title>Gestionar Semestres</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -51,7 +52,7 @@ $msg = $_GET['msg'] ?? null;
             <div class="alerta-flash"><?= htmlspecialchars($msg) ?></div>
         <?php endif; ?>
 
-        <!-- ============ FORMULARIO ============ -->
+        <!-- Formulario -->
         <section class="perfil-card">
             <h2><?= $semestre_editar ? 'Editar semestre' : 'Nuevo semestre' ?></h2>
 
@@ -88,7 +89,7 @@ $msg = $_GET['msg'] ?? null;
             </form>
         </section>
 
-        <!-- ============ LISTADO ============ -->
+        <!-- lista -->
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Semestres registrados (<?= count($semestres) ?>)</h2>
 

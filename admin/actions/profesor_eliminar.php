@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $id = (int) $_POST['id_profesor'];
 
 try {
-    // Verificar si tiene grupos activos antes de dar de baja
     $stmt = $pdo->prepare("
         SELECT COUNT(*) FROM Grupo g
         INNER JOIN Semestre s ON g.id_semestre = s.id_semestre
