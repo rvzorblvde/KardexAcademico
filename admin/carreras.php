@@ -10,7 +10,7 @@ if (isset($_GET['editar'])) {
     $carrera_editar = $stmt->fetch();
 }
 
-// Listado con conteo de dependencias (alumnos y materias)
+// Listado 
 $carreras = $pdo->query("
     SELECT c.id_carrera, c.clave_carrera, c.Nombre,
            (SELECT COUNT(*) FROM Alumno  a WHERE a.id_carrera = c.id_carrera) AS num_alumnos,
@@ -29,6 +29,7 @@ $msg = $_GET['msg'] ?? null;
     <title>Gestionar Carreras</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -52,7 +53,6 @@ $msg = $_GET['msg'] ?? null;
             <div class="alerta-flash"><?= htmlspecialchars($msg) ?></div>
         <?php endif; ?>
 
-        <!-- ============ FORMULARIO ============ -->
         <section class="perfil-card">
             <h2><?= $carrera_editar ? 'Editar carrera' : 'Nueva carrera' ?></h2>
 
@@ -91,7 +91,6 @@ $msg = $_GET['msg'] ?? null;
             </form>
         </section>
 
-        <!-- ============ LISTADO ============ -->
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Carreras registradas (<?= count($carreras) ?>)</h2>
             <table class="tabla-kardex">

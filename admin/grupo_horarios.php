@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../includes/auth_admin.php';
 require_once __DIR__ . '/../includes/connection.php';
 
-// Validar que la PK del grupo venga en la URL
 $campos_requeridos = ['num_grupo', 'id_profesor', 'clave_materia', 'id_semestre'];
 foreach ($campos_requeridos as $campo) {
     if (!isset($_GET[$campo]) || $_GET[$campo] === '') {
@@ -16,7 +15,6 @@ $id_profesor   = (int) $_GET['id_profesor'];
 $clave_materia = $_GET['clave_materia'];
 $id_semestre   = $_GET['id_semestre'];
 
-// Cargar info del grupo (para mostrar contexto en el header)
 $stmt = $pdo->prepare("
     SELECT g.*, 
            CONCAT(p.Nombres, ' ', p.Apellido1) AS profesor_nombre,
@@ -50,7 +48,6 @@ $stmt = $pdo->prepare("
 $stmt->execute([$num_grupo, $id_profesor, $clave_materia, $id_semestre]);
 $horarios = $stmt->fetchAll();
 
-// Construir querystring para reusar en redirects
 $params_grupo = http_build_query([
     'num_grupo'     => $num_grupo,
     'id_profesor'   => $id_profesor,
@@ -71,6 +68,7 @@ $dias = ['Lun' => 'Lunes', 'Mar' => 'Martes', 'Mie' => 'Miércoles',
     <title>Horarios del grupo</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -94,7 +92,7 @@ $dias = ['Lun' => 'Lunes', 'Mar' => 'Martes', 'Mie' => 'Miércoles',
             <div class="alerta-flash"><?= htmlspecialchars($msg) ?></div>
         <?php endif; ?>
 
-        <!-- ============ INFO DEL GRUPO ============ -->
+        <!-- info del grupo -->
         <section class="perfil-card">
             <div class="perfil-info">
                 <div class="info-grupo">
@@ -124,7 +122,7 @@ $dias = ['Lun' => 'Lunes', 'Mar' => 'Martes', 'Mie' => 'Miércoles',
             </div>
         </section>
 
-        <!-- ============ FORM PARA AGREGAR HORARIO ============ -->
+        <!-- agregar horario -->
         <section class="perfil-card">
             <h2>Agregar horario</h2>
 
@@ -163,7 +161,7 @@ $dias = ['Lun' => 'Lunes', 'Mar' => 'Martes', 'Mie' => 'Miércoles',
             </form>
         </section>
 
-        <!-- ============ LISTADO DE HORARIOS ============ -->
+        <!-- horarios -->
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Horarios definidos (<?= count($horarios) ?>)</h2>
 

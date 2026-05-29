@@ -9,6 +9,7 @@ require_once 'includes/auth_admin.php'; ?>
     <title>Panel Admin - Kárdex Académico</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>

@@ -15,7 +15,6 @@ if ($clave === '') {
 }
 
 try {
-    // Validar dependencias antes de eliminar
     $check = $pdo->prepare("SELECT COUNT(*) FROM Grupo WHERE clave_materia = ?");
     $check->execute([$clave]);
     $num_grupos = $check->fetchColumn();

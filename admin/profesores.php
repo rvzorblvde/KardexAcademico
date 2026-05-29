@@ -10,7 +10,7 @@ if (isset($_GET['editar'])) {
     $profesor_editar = $stmt->fetch() ?: null;
 }
 
-// Listado completo (incluye activos e inactivos)
+// Listado completo 
 $profesores = $pdo->query("
     SELECT id_profesor, Nombres, Apellido1, Apellido2, fecha_nacimiento, activo
     FROM Profesor
@@ -27,6 +27,7 @@ $msg = $_GET['msg'] ?? null;
     <title>Gestionar Profesores</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -50,7 +51,6 @@ $msg = $_GET['msg'] ?? null;
             <div class="alerta-flash"><?= htmlspecialchars($msg) ?></div>
         <?php endif; ?>
 
-        <!-- ============ FORMULARIO ============ -->
         <section class="perfil-card">
             <h2><?= $profesor_editar ? 'Editar profesor' : 'Nuevo profesor' ?></h2>
             
@@ -111,7 +111,6 @@ $msg = $_GET['msg'] ?? null;
             </form>
         </section>
 
-        <!-- ============ LISTADO ============ -->
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Profesores registrados (<?= count($profesores) ?>)</h2>
             

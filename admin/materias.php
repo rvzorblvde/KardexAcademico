@@ -10,7 +10,7 @@ if (isset($_GET['editar'])) {
     $materia_editar = $stmt->fetch() ?: null;
 }
 
-// Listado con carrera y conteo de grupos (para mostrar dependencias)
+// Listado con carrera y conteo de grupos
 $materias = $pdo->query("
     SELECT m.clave_materia, m.nombre, m.creditos, m.num_parciales, m.id_carrera,
            c.Nombre AS carrera,
@@ -20,7 +20,7 @@ $materias = $pdo->query("
     ORDER BY m.clave_materia
 ")->fetchAll();
 
-// Catálogo de carreras para el select del form
+// Catálogo de carreras 
 $carreras = $pdo->query("SELECT id_carrera, Nombre FROM Carrera ORDER BY Nombre")->fetchAll();
 
 $msg = $_GET['msg'] ?? null;
@@ -33,6 +33,7 @@ $msg = $_GET['msg'] ?? null;
     <title>Gestionar Materias</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <header>
@@ -56,7 +57,6 @@ $msg = $_GET['msg'] ?? null;
             <div class="alerta-flash"><?= htmlspecialchars($msg) ?></div>
         <?php endif; ?>
 
-        <!-- ============ FORMULARIO ============ -->
         <section class="perfil-card">
             <h2><?= $materia_editar ? 'Editar materia' : 'Nueva materia' ?></h2>
 
@@ -120,7 +120,6 @@ $msg = $_GET['msg'] ?? null;
             </form>
         </section>
 
-        <!-- ============ LISTADO ============ -->
         <section class="tabla-scroll">
             <h2 style="margin-bottom: 15px;">Materias registradas (<?= count($materias) ?>)</h2>
             

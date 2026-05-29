@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/connection.php';
 
 $id_alumno = $_SESSION['user_id'];
 
-// ============ DATOS DEL ALUMNO ============
+// Datos del alumno
 $stmt = $pdo->prepare("
     SELECT a.*, c.Nombre AS carrera_nombre, c.clave_carrera
     FROM Alumno a
@@ -19,11 +19,11 @@ if (!$alumno) {
     exit();
 }
 
-// ============ SEMESTRE ACTIVO ============
+// Semestre activo
 $stmt = $pdo->query("SELECT * FROM Semestre WHERE activo = TRUE LIMIT 1");
 $semestre_actual = $stmt->fetch();
 
-// ============ MATERIAS INSCRITAS EN EL SEMESTRE ACTIVO ============
+// Materias actuale
 $materias_actuales = [];
 if ($semestre_actual) {
     $stmt = $pdo->prepare("
@@ -47,7 +47,7 @@ if ($semestre_actual) {
     $materias_actuales = $stmt->fetchAll();
 }
 
-// ============ HORARIO DEL SEMESTRE ACTIVO ============
+// Horario
 $horarios_raw = [];
 if ($semestre_actual && count($materias_actuales) > 0) {
     $stmt = $pdo->prepare("
@@ -73,7 +73,6 @@ if ($semestre_actual && count($materias_actuales) > 0) {
     $horarios_raw = $stmt->fetchAll();
 }
 
-// Organizar horarios en una matriz [hora][dia] para mostrar como tabla
 $horario_matriz = [];
 $horas_unicas = [];
 foreach ($horarios_raw as $h) {
@@ -95,9 +94,7 @@ foreach ($horarios_raw as $h) {
 }
 $dias_visibles = array_filter($dias_orden, fn($d) => isset($dias_con_clase[$d]));
 
-// ============ ESTADÍSTICAS ============
-// Materias cursadas: inscripciones con estado Aprobada o Reprobada (histórico)
-// + las del semestre actual con cualquier calif final
+// estadistiacas
 $stmt = $pdo->prepare("
     SELECT 
         i.clave_materia, i.id_semestre, i.Estado,
@@ -116,7 +113,7 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id_alumno]);
 $todas_inscripciones = $stmt->fetchAll();
 
-// Calcular métricas
+// Calcular 
 $materias_cursadas = 0;
 $materias_aprobadas = 0;
 $creditos_acumulados = 0;
@@ -142,7 +139,7 @@ foreach ($todas_inscripciones as $insc) {
 
 $promedio_general = $count_calif > 0 ? round($suma_calif / $count_calif, 2) : 0;
 
-// Distribución de calificaciones (buckets 0-10)
+// Distribución de calificaciones
 $buckets = array_fill(0, 11, 0);
 foreach ($calificaciones_finales as $c) {
     $b = (int) floor($c);
@@ -166,6 +163,7 @@ $msg = $_GET['msg'] ?? null;
     <title>Mi Kárdex — <?= htmlspecialchars($alumno['Nombres']) ?></title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -197,29 +195,53 @@ $msg = $_GET['msg'] ?? null;
             <div class="alerta-flash"><?= htmlspecialchars($msg) ?></div>
         <?php endif; ?>
 
-        <!-- ============ TARJETA DE PERFIL ============ -->
-        <section class="perfil-card">
-            <div class="perfil-info">
-                <div class="info-grupo">
-                    <span class="label">Alumno:</span>
-                    <span class="valor"><?= htmlspecialchars("{$alumno['Nombres']} {$alumno['Apellido1']} {$alumno['Apellido2']}") ?></span>
+        <!-- Card del perfil -->
+    <section class="perfil-card">
+        <div class="foto-alumno">
+            <?php 
+            $url_foto = !empty($alumno['foto']) 
+                ? "assets/uploads/alumnos/" . htmlspecialchars($alumno['foto']) 
+                : null;
+            
+            if ($url_foto && file_exists(__DIR__ . '/' . $url_foto)): ?>
+                <img src="<?= $url_foto ?>" alt="Foto del alumno">
+            <?php else: ?>
+                <div class="foto-placeholder">
+                    <iconify-icon icon="heroicons:user-circle-solid"></iconify-icon>
                 </div>
-                <div class="info-grupo">
-                    <span class="label">Matrícula:</span>
-                    <span class="valor">a<?= $alumno['id_alumno'] ?></span>
-                </div>
-                <div class="info-grupo">
-                    <span class="label">Carrera:</span>
-                    <span class="valor"><?= htmlspecialchars($alumno['carrera_nombre']) ?></span>
-                </div>
-                <div class="info-grupo">
-                    <span class="label">Semestre vigente:</span>
-                    <span class="valor"><?= $semestre_actual ? htmlspecialchars($semestre_actual['nombre']) : '— ningún semestre vigente —' ?></span>
+            <?php endif; ?>
+        </div>
+
+        <div class="perfil-info">
+            <div class="info-grupo">
+                <span class="label">Alumno:</span>
+                <span class="valor"><?= htmlspecialchars("{$alumno['Nombres']} {$alumno['Apellido1']} {$alumno['Apellido2']}") ?></span>
+            </div>
+            <div class="info-grupo">
+                <span class="label">Matrícula:</span>
+                <div class="matricula-copiar">
+                    <span class="valor" id="matricula">a<?= $alumno['id_alumno'] ?></span>
+                    <button class="btn-copy" type="button" onclick="copiarMatricula()" title="Copiar matrícula">
+                        <iconify-icon icon="heroicons:clipboard-document"></iconify-icon>
+                    </button>
                 </div>
             </div>
-        </section>
+            <div class="info-grupo">
+                <span class="label">Carrera:</span>
+                <span class="valor"><?= htmlspecialchars($alumno['carrera_nombre']) ?></span>
+            </div>
+            <div class="info-grupo">
+                <span class="label">Semestre vigente:</span>
+                <span class="valor"><?= $semestre_actual ? htmlspecialchars($semestre_actual['nombre']) : '— ninguno —' ?></span>
+            </div>
+            <div class="info-grupo">
+                <span class="label">Fecha del sistema:</span>
+                <span class="valor" id="fecha-actual">—</span>
+            </div>
+        </div>
+    </section>
 
-        <!-- ============ TABS DE NAVEGACIÓN ============ -->
+        <!-- Navegcion alumno -->
         <nav class="alumno-nav">
             <button class="tab-btn" data-target="tab-horario">
                 <iconify-icon icon="heroicons:calendar-days-solid"></iconify-icon> Mi horario
@@ -232,7 +254,7 @@ $msg = $_GET['msg'] ?? null;
             </button>
         </nav>
 
-        <!-- ============ TAB 1: HORARIO ============ -->
+        <!-- horairio -->
         <section id="tab-horario" class="content-item active">
             <div class="tabla-scroll">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
@@ -287,13 +309,12 @@ $msg = $_GET['msg'] ?? null;
             </div>
         </section>
 
- <!-- ============ LIBRERÍAS EXTERNAS ============ -->
+ <!-- jspdf y canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <!-- ============ SCRIPT INLINE DE LA PÁGINA ============ -->
     <script>
-        // ===== DATOS DESDE PHP =====
+        // php datos
         const dataDist = <?= json_encode($data_dist) ?>;
         const datosAlumno = {
             id:       <?= json_encode($alumno['id_alumno']) ?>,
@@ -302,7 +323,6 @@ $msg = $_GET['msg'] ?? null;
             semestre: <?= json_encode($semestre_actual['nombre'] ?? '') ?>
         };
 
-        // ===== TABS =====
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -316,7 +336,7 @@ $msg = $_GET['msg'] ?? null;
             });
         });
 
-        // ===== GRÁFICA =====
+        // grafica
         <?php if ($tiene_calificaciones): ?>
         new Chart(document.getElementById('chart_distribucion'), {
             type: 'bar',
@@ -343,7 +363,7 @@ $msg = $_GET['msg'] ?? null;
         });
         <?php endif; ?>
 
-        // ===== IMPRESIÓN A PDF =====
+        // imprimir horario
         async function imprimirHorario() {
             const { jsPDF } = window.jspdf;
             const elemento = document.getElementById('horario-imprimible');
@@ -367,7 +387,7 @@ $msg = $_GET['msg'] ?? null;
                 format: 'letter'
             });
 
-            // Encabezado con datos del alumno
+            // Encabexado
             pdf.setFontSize(18);
             pdf.setFont('helvetica', 'bold');
             pdf.text('Horario de clases', 15, 18);
@@ -402,7 +422,7 @@ $msg = $_GET['msg'] ?? null;
         }
     </script>
 
-        <!-- ============ TAB 2: MATERIAS INSCRITAS ============ -->
+        <!-- materias inscritas -->
         <section id="tab-materias" class="content-item">
             <div class="tabla-scroll">
                 <h2 style="margin-bottom: 15px;">
@@ -442,7 +462,7 @@ $msg = $_GET['msg'] ?? null;
             </div>
         </section>
 
-        <!-- ============ TAB 3: ESTADÍSTICAS ============ -->
+        <!-- estadisticas -->
         <section id="tab-estadisticas" class="content-item">
             <!-- KPIs -->
             <div class="kpis-grid">
@@ -468,7 +488,7 @@ $msg = $_GET['msg'] ?? null;
                 </div>
             </div>
 
-            <!-- Gráfica de distribución -->
+            <!-- distribución -->
             <section class="chart-card" style="margin-top: 25px;">
                 <h2>Distribución de mis calificaciones</h2>
                 <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem;">
@@ -485,62 +505,23 @@ $msg = $_GET['msg'] ?? null;
         </section>
     </main>
 
-    <!-- Datos del alumno y horario para JS (PDF e interacciones) -->
+<!-- Librerías externas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Datos del alumno  -->
     <script>
-        // ============ DATOS PARA JS ============
-        const dataDist = <?= json_encode($data_dist) ?>;
-        const datosAlumno = {
-            id:      <?= json_encode($alumno['id_alumno']) ?>,
-            nombre:  <?= json_encode("{$alumno['Nombres']} {$alumno['Apellido1']} {$alumno['Apellido2']}") ?>,
-            carrera: <?= json_encode($alumno['carrera_nombre']) ?>,
+        window.dataDist = <?= json_encode($data_dist) ?>;
+        window.datosAlumno = {
+            id:       <?= json_encode($alumno['id_alumno']) ?>,
+            nombre:   <?= json_encode("{$alumno['Nombres']} {$alumno['Apellido1']} {$alumno['Apellido2']}") ?>,
+            carrera:  <?= json_encode($alumno['carrera_nombre']) ?>,
             semestre: <?= json_encode($semestre_actual['nombre'] ?? '') ?>
         };
-
-        // ============ TABS ============
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.content-item').forEach(c => c.classList.remove('active'));
-                
-                btn.classList.add('active');
-                const target = btn.dataset.target;
-                if (target) {
-                    document.getElementById(target).classList.add('active');
-                }
-            });
-        });
-
-        // ============ GRÁFICA ============
-        <?php if ($tiene_calificaciones): ?>
-        new Chart(document.getElementById('chart_distribucion'), {
-            type: 'bar',
-            data: {
-                labels: dataDist.labels,
-                datasets: [{
-                    label: 'Calificaciones',
-                    data: dataDist.valores,
-                    backgroundColor: dataDist.labels.map((_, i) => 
-                        i < 6 ? '#dc2626' : '#769127'
-                    ),
-                    borderColor: '#fff',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { beginAtZero: true, ticks: { stepSize: 1 } }
-                }
-            }
-        });
-        <?php endif; ?>
-
-        // ============ IMPRESIÓN (placeholder, lo implementamos en Parte C) ============
-        async function imprimirHorario() {
-            alert('La función de PDF se agregará en el siguiente paso.');
-        }
     </script>
+
+    <!-- Lógica externa -->
+    <script src="scripts/alumno.js"></script>
 </body>
 </html>

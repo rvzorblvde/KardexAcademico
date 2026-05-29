@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-$id_profesor   = $_SESSION['user_id'];  // ← del session, no del POST
+$id_profesor   = $_SESSION['user_id'];  
 $num_grupo     = (int) $_POST['num_grupo'];
 $clave_materia = trim($_POST['clave_materia']);
 $id_semestre   = trim($_POST['id_semestre']);
@@ -23,8 +23,7 @@ $params = http_build_query([
 ]);
 $volver = "../profesor_calificar.php?$params";
 
-// VERIFICACIÓN DE SEGURIDAD: el grupo debe pertenecer al profesor logueado
-// y el semestre debe estar activo (no se permiten cambios en semestres archivados)
+
 $stmt = $pdo->prepare("
     SELECT s.activo 
     FROM Grupo g 

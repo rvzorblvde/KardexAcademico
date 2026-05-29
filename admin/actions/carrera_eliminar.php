@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $id = (int) $_POST['id_carrera'];
 
 try {
-    // Validar dependencias antes de eliminar
     $check_alumnos = $pdo->prepare("SELECT COUNT(*) FROM Alumno WHERE id_carrera = ?");
     $check_alumnos->execute([$id]);
     $num_alumnos = $check_alumnos->fetchColumn();

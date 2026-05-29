@@ -41,13 +41,11 @@ try {
             }
 
             foreach ($parciales as $num_parcial => $valor) {
-                // El input usa "0" para tipos no-Parcial; convertir a NULL para la BD
                 $num_parcial = ($tipo === 'Parcial') ? (int) $num_parcial : null;
                 
                 $valor_trim = trim($valor);
 
                 if ($valor_trim === '') {
-                    // Celda vacía: si existía calificación previa, la borramos
                     $sql_del = "DELETE FROM Calificacion 
                                 WHERE id_alumno = ? AND num_grupo = ? AND id_profesor = ? 
                                   AND clave_materia = ? AND id_semestre = ?
@@ -69,7 +67,6 @@ try {
                     continue;
                 }
 
-                // INSERT ... ON DUPLICATE KEY UPDATE (upsert)
                 $sql = "INSERT INTO Calificacion 
                             (id_alumno, num_grupo, id_profesor, clave_materia, id_semestre,
                              tipo, num_parcial, calificacion, inasistencias)

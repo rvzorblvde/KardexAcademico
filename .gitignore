@@ -1,4 +1,8 @@
 # Ignorar el archivo del area de trabajo
 *.code-workspace
-password-repair.php
-generar_hash.php
+
+# No subir fotos de usuarios, solo la estructura de carpetas
+assets/uploads/alumnos/*
+assets/uploads/profesores/*
+!assets/uploads/alumnos/.gitkeep
+!assets/uploads/profesores/.gitkeep
