@@ -1,0 +1,107 @@
+/* ============ Vista pública de horarios (sin login) ============ */
+.horarios-publica {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.filtros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    align-items: end;
+}
+
+.filtros-grid .input-grupo label {
+    color: var(--bg-principal);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.filtros-grid select,
+.filtros-grid input[type="text"] {
+    width: 100%;
+    padding: 12px 18px;
+    border: 1px solid var(--gris-suave);
+    border-radius: 25px;
+    background-color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: outline var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+.filtros-grid select:focus,
+.filtros-grid input:focus {
+    outline: 2px solid var(--btn-normalf);
+    border-color: var(--btn-normalf);
+}
+
+.filtros-grid .input-icon input {
+    padding-left: 40px;
+}
+
+/* ============ Horarios viejos (la versión vieja con celdas flex) ============
+   Si todavía tienes referencias a este patrón, lo dejamos aquí. Si no,
+   puedes borrar este bloque. */
+.horarios-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 180px);
+    padding: 20px;
+}
+
+.materias-card {
+    background-color: var(--color-blanco);
+    width: 100%;
+    max-width: 1100px;
+    padding: 0;
+    border-radius: var(--radio-xl);
+    overflow: hidden;
+    box-shadow: var(--sombra-card-fuerte);
+}
+
+.tabla-materias {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabla-row {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tabla-header {
+    background-color: var(--tarjeta2);
+    color: var(--color-blanco);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.fila-datos {
+    background-color: var(--color-blanco);
+    color: var(--color-negro);
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.celda {
+    display: flex;
+    align-items: center;
+}
+
+.col-clave    { flex: 0 0 7%; }
+.col-grupo    { flex: 0 0 7%; }
+.col-materia  { flex: 0 0 22%; }
+.col-profesor { flex: 0 0 20%; }
+.col-salon    { flex: 0 0 10%; }
+.col-dia      { flex: 0 0 4%; justify-content: center; }
+.col-tipo     { flex: 0 0 8%; justify-content: center; flex-direction: column; gap: 8px; }
+.col-cupo     { flex: 0 0 6%; justify-content: center; }

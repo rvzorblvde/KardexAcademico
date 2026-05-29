@@ -1,0 +1,66 @@
+.tabla-scroll {
+    overflow-x: auto;
+    background: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    padding: 20px;
+    box-shadow: var(--sombra-card);
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.tabla-kardex {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.tabla-kardex th {
+    background-color: var(--tarjeta2);
+    color: var(--color-blanco);
+    padding: 12px;
+}
+
+.tabla-kardex td {
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--gris-suave);
+    transition: background var(--transicion-rapida);
+}
+
+.tabla-kardex tbody tr:hover td {
+    background: rgba(109, 177, 191, 0.1);
+}
+
+.fila-inactiva {
+    opacity: 0.55;
+}
+
+/* ============ Tabla genérica de admin ============ */
+.admin-table-container {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    padding: 15px;
+    overflow: hidden;
+}
+
+.admin-table-edit {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table-edit th {
+    background-color: var(--tarjeta2);
+    color: var(--color-blanco);
+    padding: 12px;
+    text-align: left;
+}
+
+.admin-table-edit td {
+    padding: 10px;
+    border-bottom: 1px solid var(--azul1);
+}
+
+.admin-table-edit input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--hint-gray);
+    border-radius: 10px;
+}

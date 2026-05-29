@@ -1,0 +1,55 @@
+.alumno-nav {
+    display: flex;
+    gap: 15px;
+    background-color: var(--azul1);
+    padding: 15px;
+    border-radius: var(--radio-pill);
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 10px 25px;
+    border-radius: var(--radio-xl);
+    border: none;
+    text-decoration: none;
+    background-color: var(--btn-normalf);
+    color: var(--btn-normala);
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color var(--transicion-rapida),
+                color var(--transicion-rapida),
+                transform var(--transicion-rapida);
+}
+
+.tab-btn:hover {
+    background-color: var(--btn-activof);
+    color: var(--btn-activoa);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background-color: var(--btn-activof);
+    color: var(--btn-activoa);
+}
+
+.tab-btn.active:hover {
+    transform: translateY(-2px);
+}
+
+.content-item {
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.content-item.active {
+    display: block;
+}
+
+.admin-nav-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}

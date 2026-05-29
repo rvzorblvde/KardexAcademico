@@ -1,0 +1,57 @@
+:root {
+    /* ============ Colores principales ============ */
+    --bg-principal: #114B5F;
+    --azul1: #6DB1BF;
+    --tarjeta1: #C2E7DA;
+    --tarjeta2: #839788;
+
+    /* ============ Texto y neutros ============ */
+    --color-negro: #231F20;
+    --color-blanco: #F7F4F3;
+    --hint-gray: #A3A3A3;
+    --gris-suave: #ddd;
+    --gris-borde: #e5e7eb;
+
+    /* ============ Botón normal ============ */
+    --btn-normalf: #F6AE2D;
+    --btn-normala: #895B06;
+
+    /* ============ Botón activo / confirmar ============ */
+    --btn-activof: #769127;
+    --btn-activoa: #425115;
+
+    /* ============ Estados semánticos ============ */
+    --color-rojo: #dc2626;
+    --color-rojo-bg: #fca5a5;
+    --color-rojo-texto: #7f1d1d;
+
+    --color-verde: #16a34a;
+    --color-verde-bg: #86efac;
+    --color-verde-texto: #14532d;
+
+    --color-azul-info: #1d76db;
+    --color-morado: #7c3aed;
+
+    /* ============ Fondo kpi ============ */
+    --kpi-verde: #d1fae5;
+    --kpi-azul: #dbeafe;
+    --kpi-naranja: #fed7aa;
+
+    /* ============ Radios ============ */
+    --radio-sm: 8px;
+    --radio-md: 15px;
+    --radio-lg: 20px;
+    --radio-xl: 30px;
+    --radio-pill: 50px;
+
+    /* ============ Sombras ============ */
+    --sombra-card: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --sombra-card-fuerte: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    /* ============ Tipografía ============ */
+    --fuente-base: Arial, Helvetica, sans-serif;
+
+    /* ============ Transiciones reutilizables ============ */
+    --transicion-rapida: 0.2s ease;
+    --transicion-media: 0.3s ease;
+}

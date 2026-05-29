@@ -221,7 +221,7 @@ $msg = $_GET['msg'] ?? null;
 
         <!-- ============ TABS DE NAVEGACIÓN ============ -->
         <nav class="alumno-nav">
-            <button class="tab-btn active" data-target="tab-horario">
+            <button class="tab-btn" data-target="tab-horario">
                 <iconify-icon icon="heroicons:calendar-days-solid"></iconify-icon> Mi horario
             </button>
             <button class="tab-btn" data-target="tab-materias">
