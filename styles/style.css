@@ -709,3 +709,35 @@ nav ul {
 .tabla-calificaciones td {
     padding: 8px 4px;
 }
+
+/* ============= Gráficas ============= */
+.chart-card {
+    background-color: var(--color-blanco);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chart-card h2 {
+    color: var(--bg-principal);
+    margin-bottom: 5px;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+.chart-container-small {
+    max-width: 500px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+.chart-empty {
+    text-align: center;
+    color: #999;
+    padding: 60px 20px;
+    font-style: italic;
+}
