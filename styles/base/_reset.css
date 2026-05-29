@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-base);
+    background-color: var(--bg-principal);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Reset de listas usadas en navs */
+nav ul {
+    list-style: none;
+}
+
+/* Imágenes responsivas */
+img {
+    max-width: 100%;
+    height: auto;
+}

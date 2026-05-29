@@ -1,0 +1,42 @@
+/* ============ Alerta flash (notificaciones) ============ */
+.alerta-flash {
+    background: var(--tarjeta1);
+    color: var(--color-negro);
+    padding: 15px 25px;
+    border-radius: var(--radio-md);
+    font-weight: 700;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* ============ Pills de estado ============ */
+.estado-pill {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.estado-pill.activo {
+    background: var(--color-verde-bg);
+    color: var(--color-verde-texto);
+}
+
+.estado-pill.inactivo {
+    background: var(--color-rojo-bg);
+    color: var(--color-rojo-texto);
+}
+
+/* ============ Texto de error ============ */
+.txt-error {
+    color: var(--color-rojo);
+    font-size: 1.25rem;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+    animation: fadeIn 0.3s ease-out;
+}

@@ -1,0 +1,105 @@
+/* ============ Card de perfil (info del usuario) ============ */
+.perfil-card {
+    background-color: var(--tarjeta1);
+    border-radius: var(--radio-xl);
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.perfil-info {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-grupo .label {
+    display: block;
+    font-weight: 800;
+    color: var(--bg-principal);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-grupo .valor {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-negro);
+}
+
+/* ============ Card de gráfica ============ */
+.chart-card {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    padding: 25px;
+    box-shadow: var(--sombra-card-fuerte);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.chart-card h2 {
+    color: var(--bg-principal);
+    margin-bottom: 5px;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+.chart-container-small {
+    max-width: 500px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+.chart-empty {
+    text-align: center;
+    color: var(--hint-gray);
+    padding: 60px 20px;
+    font-style: italic;
+}
+
+/* ============ Card de filtros ============ */
+.filtros-card {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    padding: 25px 30px;
+    box-shadow: var(--sombra-card);
+    animation: fadeIn 0.4s ease-out;
+}
+
+.filtros-card h2 {
+    color: var(--bg-principal);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.foto-placeholder {
+    width: 150px;
+    height: 150px;
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    color: var(--tarjeta2);
+}
+
+.fecha-sistema {
+    font-weight: 800;
+    color: var(--bg-principal);
+    font-size: 1.2rem;
+}
+
+.matricula-copiar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

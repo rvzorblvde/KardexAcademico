@@ -1,0 +1,94 @@
+.alumno-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ============ KPIs ============ */
+.kpis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.kpi-card {
+    background: var(--tarjeta1);
+    border-radius: var(--radio-lg);
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: var(--sombra-card);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transicion-media), box-shadow var(--transicion-media);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.kpi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-card-fuerte);
+}
+
+.kpi-card.kpi-verde   { background: var(--kpi-verde); }
+.kpi-card.kpi-azul    { background: var(--kpi-azul); }
+.kpi-card.kpi-naranja { background: var(--kpi-naranja); }
+
+.kpi-icono {
+    font-size: 2.5rem;
+    color: var(--bg-principal);
+    margin-bottom: 10px;
+}
+
+.kpi-numero {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-negro);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.kpi-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--bg-principal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============ Tabla del horario (alumno) ============ */
+.tabla-horario td {
+    height: 80px;
+    vertical-align: middle;
+    border: 1px solid var(--gris-borde);
+}
+
+.tabla-horario .celda-hora {
+    background: var(--tarjeta2);
+    color: var(--color-blanco);
+    width: 110px;
+    text-align: center;
+}
+
+.tabla-horario .celda-clase {
+    background: var(--tarjeta1);
+    text-align: center;
+    padding: 10px;
+    transition: transform var(--transicion-rapida);
+}
+
+.tabla-horario .celda-clase:hover {
+    transform: scale(1.03);
+}
+
+.tabla-horario .celda-clase strong {
+    color: var(--bg-principal);
+    font-size: 1.05rem;
+}
+
+.tabla-horario .celda-clase small {
+    color: #444;
+    display: block;
+    margin-top: 3px;
+}

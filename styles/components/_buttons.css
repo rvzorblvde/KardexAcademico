@@ -1,0 +1,144 @@
+/* ============ Botón de nav (header) ============ */
+.btn-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: var(--radio-pill);
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-color: var(--btn-normalf);
+    color: var(--btn-normala);
+    transition: background-color var(--transicion-rapida),
+                color var(--transicion-rapida),
+                transform var(--transicion-rapida);
+}
+
+.btn-nav:hover {
+    background-color: var(--btn-activof);
+    color: var(--btn-activoa);
+    transform: translateY(-2px);
+}
+
+/* ============ Botón primario ============ */
+.btn-login {
+    background-color: var(--btn-normalf);
+    color: var(--btn-normala);
+    border: none;
+    padding: 14px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: var(--radio-xl);
+    cursor: pointer;
+    margin-top: 15px;
+    width: 75%;
+    align-self: center;
+    transition: background-color var(--transicion-media),
+                color var(--transicion-media),
+                transform var(--transicion-rapida);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-login:hover {
+    background-color: var(--btn-activof);
+    color: var(--btn-activoa);
+    transform: scale(1.02);
+}
+
+.btn-login:active {
+    transform: scale(0.98);
+}
+
+/* ============ Botón de tabla ============ */
+.btn-tabla {
+    background: var(--btn-normalf);
+    border: none;
+    padding: 8px;
+    border-radius: var(--radio-sm);
+    cursor: pointer;
+    color: var(--btn-normala);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: filter var(--transicion-rapida),
+                transform var(--transicion-rapida);
+}
+
+.btn-tabla:hover:not(:disabled) {
+    filter: brightness(0.95);
+    transform: translateY(-1px);
+}
+
+.btn-tabla:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-tabla.btn-rojo   { background: var(--color-rojo); color: white; }
+.btn-tabla.btn-verde  { background: var(--color-verde); color: white; }
+
+/* ============ Botón cancelar ============ */
+.btn-cancelar {
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--color-negro);
+    text-decoration: underline;
+    margin-left: 10px;
+    transition: color var(--transicion-rapida);
+}
+
+.btn-cancelar:hover {
+    color: var(--color-rojo);
+}
+
+/* ============ Botón copiar ============ */
+.btn-copy {
+    background: var(--btn-normalf);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    padding: 5px;
+    color: var(--btn-normala);
+    transition: background var(--transicion-rapida);
+}
+
+.btn-copy:hover {
+    background: var(--btn-activof);
+    color: var(--btn-activoa);
+}
+
+/* ============ Botón imprimir ============ */
+.btn-print {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ============ Botones de acción ============ */
+.btn-action {
+    border: none;
+    padding: 8px;
+    border-radius: var(--radio-sm);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-update { background-color: var(--btn-activof); color: var(--btn-activoa); }
+.btn-delete { background-color: var(--color-rojo); color: white; margin-left: 5px; }
+
+/* ============ Acciones ============ */
+.form-acciones {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
